@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ToDoApi.Order.Enum
+namespace ToDoApi.Domain.Enum
 {
     public enum State
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ToDoApi.Order.Enum;
+using ToDoApi.Domain.Enum;
 
-namespace ToDoApi.Order.Entities
+namespace ToDoApi.Domain.Entities
 {
     class TodoItem
     {
