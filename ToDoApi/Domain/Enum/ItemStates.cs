@@ -2,10 +2,10 @@
 
 namespace ToDoApi.Domain.Enum
 {
-    public enum State
+    public enum ItemStates
     {
-        [Description("To do")]
-        ToDo = 1,
+        [Description("Todo")]
+        Todo = 1,
 
         [Description("In Progress")]
         InProgress = 2,
