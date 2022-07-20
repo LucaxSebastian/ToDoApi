@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ToDoApi.Domain.Entities;
 using ToDoApi.Contracts.Request;
 
@@ -9,13 +10,11 @@ namespace ToDoApi.Controllers
     public class ToDoController : ControllerBase
     {
         [HttpPost]
-        public TodoItem PostToDo([FromBody] TodoItemRequest request)
+        public IActionResult CreateToDo([FromBody] TodoItemRequest request)
         {
             request.Validate();
 
-            var response = new TodoItem(request.Title, request.Description, request.EndDate);
-
-            return response;
+            return Ok(new TodoItem(request.Title, request.Description, request.EndDate));
         }
     }
 }
