@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ToDoApi.Domain.Entities;
 using ToDoApi.Contracts.Request;
 
@@ -12,9 +11,16 @@ namespace ToDoApi.Controllers
         [HttpPost]
         public IActionResult CreateToDo([FromBody] TodoItemRequest request)
         {
-            request.Validate();
+            try
+            {
+                request.Validate();
 
-            return Ok(new TodoItem(request.Title, request.Description, request.EndDate));
+                return Ok(new TodoItem(request.Title, request.Description, request.EndDate));
+            }
+            catch(BadHttpRequestException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }
