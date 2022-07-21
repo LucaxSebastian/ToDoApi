@@ -9,11 +9,16 @@ namespace ToDoApi.Contracts.Validators
         {
             RuleFor(x => x.Title)
                 .NotEmpty()
-                .WithMessage("The title is required");
+                .WithMessage("The title is required")
+                .MinimumLength(5)
+                .MaximumLength(20);
 
             RuleFor(x => x.Description)
                 .NotEmpty()
-                .WithMessage("The description is required");
+                .WithMessage("The description is required")
+                .MinimumLength(10)
+                .MaximumLength(30);
+            
 
             RuleFor(x => x.EndDate.Day)
                 .GreaterThan(DateTime.Today.Day)
