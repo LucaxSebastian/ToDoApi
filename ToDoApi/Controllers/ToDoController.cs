@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ToDoApi.Domain.Entities;
 using ToDoApi.Contracts.Request;
+using ToDoApi.Contracts.Response;
 
 namespace ToDoApi.Controllers
 {
@@ -15,7 +16,10 @@ namespace ToDoApi.Controllers
             {
                 request.Validate();
 
-                return Ok(new TodoItem(request.Title, request.Description, request.EndDate));
+                var todo = new TodoItem(request.Title, request.Description, request.EndDate);
+                TodoList.todoItems.Add(todo);
+
+                return Ok(todo);
             }
             catch(BadHttpRequestException ex)
             {
