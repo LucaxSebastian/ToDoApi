@@ -37,5 +37,18 @@ namespace ToDoApi.Controllers
 
             return Ok(TodoList.todoItems);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetTodoById(int id)
+        {
+            var result = TodoList.todoItems.Find(todo => todo.Id == id);
+
+            if (result == null)
+            {
+                return NotFound(new { message = "The given Id does not exist in the Todo list." });
+            }
+
+            return Ok(result);
+        }
     }
 }
