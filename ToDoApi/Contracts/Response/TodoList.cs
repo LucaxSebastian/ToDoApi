@@ -4,6 +4,11 @@ namespace ToDoApi.Contracts.Response
 {
     public static class TodoList
     {
-        public static List<TodoItem> todoItems = new List<TodoItem>();
+        public static List<TodoItem> TodoItems = new();
+
+        public static bool IsEmptyTodoItems()
+        {
+            return TodoItems.Count == 0;
+        }
     }
 }
