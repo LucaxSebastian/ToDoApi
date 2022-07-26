@@ -17,7 +17,7 @@ namespace ToDoApi.Controllers
                 request.Validate();
 
                 var todo = new TodoItem(request.Title, request.Description, request.EndDate);
-                TodoList.todoItems.Add(todo);
+                TodoList.TodoItems.Add(todo);
 
                 return Ok(todo);
             }
@@ -30,20 +30,20 @@ namespace ToDoApi.Controllers
         [HttpGet]
         public ActionResult<List<TodoItem>> GetAllTodo()
         {
-            if (TodoList.todoItems.Count == 0)
+            if (TodoList.IsEmptyTodoItems())
             {
                 return NoContent();
             }
 
-            return Ok(TodoList.todoItems);
+            return Ok(TodoList.TodoItems);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetTodoById(int id)
         {
-            var result = TodoList.todoItems.Find(todo => todo.Id == id);
+            var result = TodoList.TodoItems.Find(todo => todo.Id == id);
 
-            if (result == null)
+            if (result is null)
             {
                 return NotFound(new { message = "The given Id does not exist in the Todo list." });
             }
