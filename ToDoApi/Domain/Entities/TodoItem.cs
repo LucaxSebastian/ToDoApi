@@ -15,7 +15,7 @@ namespace ToDoApi.Domain.Entities
 
         public TodoItem(string title, string description, DateTime endDate)
         {
-            Id = IdGenerator.GetNextId();
+            Id = IdIncrementer.GetNextId();
             Title = title;
             Description = description;
             EndDate = endDate;
