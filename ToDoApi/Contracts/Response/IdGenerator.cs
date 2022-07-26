@@ -1,6 +1,6 @@
 ﻿namespace ToDoApi.Contracts.Response
 {
-    public static class IdGenerator
+    public static class IdIncrementer
     {
         private static int Id { get; set; }
     
