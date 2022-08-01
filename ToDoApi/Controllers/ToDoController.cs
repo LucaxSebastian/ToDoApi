@@ -50,5 +50,31 @@ namespace ToDoApi.Controllers
 
             return Ok(result);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateTodoById(int id, [FromBody] TodoItemPutRequest update)
+        {
+            try
+            {
+                update.Validate();
+
+                var todo = TodoList.TodoItems.Find(element => element.Id == id);
+
+                if (todo is null)
+                {
+                    return NotFound("The given id does not exist. Enter a valid Id to update information");
+                }
+
+                todo.Title = update.Title;
+                todo.Description = update.Description;
+                todo.UpdateDate = DateTime.Now;
+
+                return Ok(new UpdateTodoResponse(todo));
+            }
+            catch (BadHttpRequestException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }
